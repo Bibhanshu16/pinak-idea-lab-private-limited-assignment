@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>BrightLaunch | Modern Business Landing Page</title>
@@ -9,21 +10,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     :root {
-      --primary: #2563eb;       /* Blue */
-      --primary-soft: #dbeafe;  /* Soft blue background */
-      --bg: #f9fafb;            /* Light background */
-      --text: #111827;          /* Dark grey text */
-      --muted: #6b7280;         /* Muted text */
+      --primary: #2563eb;
+      /* Blue */
+      --primary-soft: #dbeafe;
+      /* Soft blue background */
+      --bg: #f9fafb;
+      /* Light background */
+      --text: #111827;
+      /* Dark grey text */
+      --muted: #6b7280;
+      /* Muted text */
       --border: #e5e7eb;
       --radius-lg: 1rem;
       --radius-md: 0.75rem;
@@ -36,7 +38,8 @@
       padding: 0;
     }
 
-    html, body {
+    html,
+    body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
@@ -638,6 +641,13 @@
       gap: 1.2rem;
     }
 
+    /* UPDATED: more space so right column sits lower */
+    @media (min-width: 900px) {
+      .contact-aside {
+        margin-top: 9rem;
+      }
+    }
+
     .contact-highlight {
       padding: 1.2rem 1.4rem;
       border-radius: var(--radius-lg);
@@ -671,6 +681,13 @@
 
     .contact-item i {
       color: var(--primary);
+    }
+
+    .contact-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
     }
 
     .social-row {
@@ -814,6 +831,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="page-wrapper">
     <!-- NAVBAR -->
@@ -867,11 +885,13 @@
                 screen — without sacrificing performance or accessibility.
               </p>
               <div class="hero-actions">
-                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                <button class="btn-primary"
+                  onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
                   Book a free call
                   <i class="fa-solid fa-calendar-check"></i>
                 </button>
-                <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+                <button class="btn-ghost"
+                  onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
                   View services
                   <i class="fa-solid fa-arrow-down-long"></i>
                 </button>
@@ -897,8 +917,7 @@
                   <!-- Unsplash image -->
                   <img
                     src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-                    alt="Team collaborating in a modern office"
-                  />
+                    alt="Team collaborating in a modern office" />
                 </div>
                 <div class="hero-stats">
                   <div class="hero-stat">
@@ -1060,39 +1079,23 @@
                 <form id="contactForm" novalidate>
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Your full name"
-                      required
-                      aria-required="true"
-                    />
+                    <input type="text" id="name" name="name" placeholder="Your full name" required
+                      aria-required="true" />
                     <div class="form-error" id="nameError">Please enter your name.</div>
                   </div>
 
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="you@example.com"
-                      required
-                      aria-required="true"
-                    />
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required
+                      aria-required="true" />
                     <div class="form-error" id="emailError">Please enter a valid email address.</div>
                   </div>
 
                   <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      placeholder="Tell us about your project, goals, and timeline..."
-                      required
-                      aria-required="true"
-                    ></textarea>
+                    <textarea id="message" name="message"
+                      placeholder="Tell us about your project, goals, and timeline..." required
+                      aria-required="true"></textarea>
                     <div class="form-error" id="messageError">Please include a short message.</div>
                     <div class="form-helper">
                       We’ll only use this information to respond to your inquiry.
@@ -1154,7 +1157,8 @@
                 </div>
 
                 <div>
-                  <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.16em; color:#64748b; margin-bottom:0.4rem;">
+                  <div
+                    style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.16em; color:#64748b; margin-bottom:0.4rem;">
                     Social
                   </div>
                   <div class="social-row">
@@ -1237,7 +1241,7 @@
   <script>
     // Navbar toggle
     const navToggle = document.getElementById("navToggle");
-    const navMenu   = document.getElementById("navMenu");
+    const navMenu = document.getElementById("navMenu");
 
     navToggle.addEventListener("click", () => {
       navMenu.classList.toggle("open");
@@ -1327,4 +1331,5 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
+
 </html>
