@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BrightLaunch | Modern Business Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    :root {
+      --primary: #2563eb;       /* Blue */
+      --primary-soft: #dbeafe;  /* Soft blue background */
+      --bg: #f9fafb;            /* Light background */
+      --text: #111827;          /* Dark grey text */
+      --muted: #6b7280;         /* Muted text */
+      --border: #e5e7eb;
+      --radius-lg: 1rem;
+      --radius-md: 0.75rem;
+      --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Layout helpers */
+
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    section {
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Navbar */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(249, 250, 251, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      max-width: 1120px;
+      margin: 0 auto;
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-logo {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.25rem;
+      width: 0;
+      height: 0.12rem;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-0.05rem);
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.25);
+      background: #1d4ed8;
+    }
+
+    /* Mobile nav */
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: absolute;
+        inset-inline: 0;
+        top: 100%;
+        background: rgba(249, 250, 251, 0.98);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.5rem 1.5rem;
+        gap: 1rem;
+        display: none;
+      }
+
+      .nav-menu.open {
+        display: flex;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-cta {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* Hero section */
+
+    .hero {
+      background: radial-gradient(circle at top left, #dbeafe 0%, #eff6ff 40%, #f9fafb 75%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1d4ed8;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-eyebrow span {
+      display: inline-block;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw + 1rem, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title span {
+      color: var(--primary);
+    }
+
+    .hero-subtext {
+      color: var(--muted);
+      max-width: 32rem;
+      font-size: 0.98rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 0.9rem 1.6rem;
+      border-radius: 999px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-0.08rem);
+      background: #1d4ed8;
+      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-ghost {
+      padding: 0.9rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: var(--text);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      align-items: center;
+    }
+
+    .hero-meta strong {
+      color: var(--text);
+    }
+
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid #bfdbfe;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .hero-badge i {
+      color: #fbbf24;
+    }
+
+    .hero-visual {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-lg);
+      background: white;
+      padding: 1.2rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hero-image-wrapper {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .hero-stat strong {
+      font-size: 1.1rem;
+    }
+
+    .hero-floating {
+      position: static;
+      margin: 1rem;
+      right: 5%;
+      bottom: -1rem;
+      transform: translateY(10%);
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.92);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.5);
+    }
+
+    .hero-dot {
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.4);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+    }
+
+    /* Section headers */
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-weight: 600;
+      color: #60a5fa;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 30rem;
+    }
+
+    /* Services section */
+
+    .services {
+      background: white;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-0.15rem);
+      box-shadow: var(--shadow-soft);
+      border-color: #bfdbfe;
+      background: #f3f4ff;
+    }
+
+    .service-icon {
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 0.9rem;
+      background: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    .service-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .service-text {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .service-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .service-meta i {
+      color: #22c55e;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Contact */
+
+    .contact {
+      background: var(--primary-soft);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    input,
+    textarea {
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      padding: 0.8rem 0.9rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      background: #f9fafb;
+    }
+
+    textarea {
+      min-height: 7rem;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 0.12rem rgba(37, 99, 235, 0.2);
+    }
+
+    .form-helper {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .form-error {
+      font-size: 0.78rem;
+      color: #b91c1c;
+      display: none;
+    }
+
+    .form-status {
+      font-size: 0.86rem;
+      display: none;
+      margin-top: 0.5rem;
+    }
+
+    .form-status.success {
+      color: #15803d;
+    }
+
+    .form-status.error {
+      color: #b91c1c;
+    }
+
+    .contact-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .contact-highlight {
+      padding: 1.2rem 1.4rem;
+      border-radius: var(--radius-lg);
+      background: rgba(37, 99, 235, 0.06);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-highlight i {
+      color: var(--primary);
+      margin-top: 0.15rem;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .contact-item i {
+      color: var(--primary);
+    }
+
+    .social-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-pill {
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #4b5563;
+      background: white;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .social-pill:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-0.05rem);
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Footer */
+
+    footer {
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    .footer-inner {
+      padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .footer-grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+      padding-bottom: 1.5rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .footer-brand h3 {
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-badge {
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.18);
+      font-size: 0.7rem;
+      color: #6ee7b7;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .footer-column-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      color: #9ca3af;
+    }
+
+    .footer-links a {
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    .footer-bottom {
+      max-width: 1120px;
+      margin: 0.75rem auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-top: 0.5rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    .footer-bottom a {
+      color: inherit;
+    }
+
+    .footer-bottom a:hover {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- NAVBAR -->
+    <header>
+      <nav class="nav">
+        <div class="nav-brand">
+          <div class="nav-logo">BL</div>
+          <div>
+            <div>BrightLaunch</div>
+            <small style="display:block; font-size:0.7rem; color:#6b7280; font-weight:500;">
+              Modern web experiences
+            </small>
+          </div>
+        </div>
+
+        <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+          <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Get in touch
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <!-- Left -->
+            <div class="stack">
+              <div class="hero-eyebrow">
+                <span></span>
+                Launch faster with confidence
+              </div>
+              <h1 class="hero-title">
+                Design-first websites for
+                <span>growing brands</span>.
+              </h1>
+              <p class="hero-subtext">
+                We craft responsive, conversion-focused landing pages and product sites that look great on every
+                screen — without sacrificing performance or accessibility.
+              </p>
+              <div class="hero-actions">
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                  Book a free call
+                  <i class="fa-solid fa-calendar-check"></i>
+                </button>
+                <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+                  View services
+                  <i class="fa-solid fa-arrow-down-long"></i>
+                </button>
+              </div>
+              <div class="hero-meta">
+                <div class="hero-badge-row">
+                  <div class="hero-badge">
+                    <i class="fa-solid fa-star"></i>
+                    <span>Trusted by modern teams</span>
+                  </div>
+                  <div class="hero-badge">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Launch in weeks, not months</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right visual -->
+            <div class="hero-visual">
+              <div class="hero-card">
+                <div class="hero-image-wrapper">
+                  <!-- Unsplash image -->
+                  <img
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+                    alt="Team collaborating in a modern office"
+                  />
+                </div>
+                <div class="hero-stats">
+                  <div class="hero-stat">
+                    <strong>120+</strong>
+                    <span class="hero-subtext" style="font-size:0.8rem; color:var(--muted);">
+                      Projects shipped with pixel-perfect UI.
+                    </span>
+                  </div>
+                  <div class="hero-stat">
+                    <strong>4.9/5</strong>
+                    <span class="hero-subtext" style="font-size:0.8rem; color:var(--muted);">
+                      Average client satisfaction rating.
+                    </span>
+                  </div>
+                  <div class="hero-stat">
+                    <strong>3x</strong>
+                    <span class="hero-subtext" style="font-size:0.8rem; color:var(--muted);">
+                      Faster go-live vs. traditional agencies.
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-floating">
+                <span class="hero-dot"></span>
+                <div>
+                  <strong style="font-size:0.82rem;">Live preview-ready</strong>
+                  <div style="font-size:0.75rem; opacity:0.9;">
+                    Share modern prototypes with stakeholders in days.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="services" id="services">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-eyebrow">What we do</span>
+            <h2 class="section-title">Services built for modern product teams</h2>
+            <p class="section-subtitle">
+              From landing pages to full marketing sites, we handle the UX, UI, and front-end implementation so your
+              team can stay focused on shipping features.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-display"></i>
+              </div>
+              <h3 class="service-title">Responsive UI Design</h3>
+              <p class="service-text">
+                Clean, component-based layouts that scale gracefully across mobile, tablet, and desktop using modern
+                CSS flex and grid systems.
+              </p>
+              <div class="service-meta">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Design systems, style guides &amp; prototypes</span>
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <h3 class="service-title">Front-End Development</h3>
+              <p class="service-text">
+                Production-ready HTML, CSS, and JavaScript with a focus on performance, accessibility, and SEO best
+                practices baked in.
+              </p>
+              <div class="service-meta">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Reusable components &amp; clean architecture</span>
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-bullseye"></i>
+              </div>
+              <h3 class="service-title">Conversion-Focused Pages</h3>
+              <p class="service-text">
+                Landing pages and funnels optimized for signups, demos, and product launches — grounded in UX
+                best practices.
+              </p>
+              <div class="service-meta">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>A/B-test ready, analytics friendly</span>
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-sitemap"></i>
+              </div>
+              <h3 class="service-title">Marketing Sites &amp; Docs</h3>
+              <p class="service-text">
+                Scalable informational sites with clear navigation and content structure, tailored to your product
+                and brand.
+              </p>
+              <div class="service-meta">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>SEO-friendly architecture &amp; structure</span>
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+              </div>
+              <h3 class="service-title">Component Libraries</h3>
+              <p class="service-text">
+                Reusable UI components designed to plug into modern frameworks, ensuring visual consistency as you
+                scale.
+              </p>
+              <div class="service-meta">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Design tokens &amp; consistent patterns</span>
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">
+                <i class="fa-solid fa-gauge-high"></i>
+              </div>
+              <h3 class="service-title">Performance &amp; Audits</h3>
+              <p class="service-text">
+                Technical reviews of layout, responsiveness, and loading behavior with actionable recommendations for
+                improvement.
+              </p>
+              <div class="service-meta">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Core Web Vitals &amp; accessibility checks</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="contact">
+        <div class="container">
+          <div class="contact-grid">
+            <!-- Form -->
+            <div class="stack">
+              <div class="section-header">
+                <span class="section-eyebrow">Let’s talk</span>
+                <h2 class="section-title">Share your next idea with us</h2>
+                <p class="section-subtitle">
+                  Tell us a bit about your product, and we’ll follow up with ideas, timelines, and next steps to move
+                  your project forward.
+                </p>
+              </div>
+
+              <div class="contact-card">
+                <form id="contactForm" novalidate>
+                  <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Your full name"
+                      required
+                      aria-required="true"
+                    />
+                    <div class="form-error" id="nameError">Please enter your name.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="you@example.com"
+                      required
+                      aria-required="true"
+                    />
+                    <div class="form-error" id="emailError">Please enter a valid email address.</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      placeholder="Tell us about your project, goals, and timeline..."
+                      required
+                      aria-required="true"
+                    ></textarea>
+                    <div class="form-error" id="messageError">Please include a short message.</div>
+                    <div class="form-helper">
+                      We’ll only use this information to respond to your inquiry.
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+                    Send message
+                    <i class="fa-solid fa-paper-plane"></i>
+                  </button>
+
+                  <div class="form-status" id="formStatus"></div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Aside contact info -->
+            <aside class="contact-aside">
+              <div class="contact-highlight">
+                <i class="fa-solid fa-lightbulb"></i>
+                <div>
+                  <strong>Prefer async collaboration?</strong>
+                  <p>
+                    We can work entirely remote with Loom walkthroughs, Figma files, and Git-based handoffs tailored
+                    to your team’s workflow.
+                  </p>
+                </div>
+              </div>
+
+              <div class="contact-list">
+                <div class="contact-item">
+                  <i class="fa-solid fa-envelope"></i>
+                  <div>
+                    <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.16em; color:#64748b;">
+                      Email
+                    </div>
+                    <a href="mailto:hello@brightlaunch.studio">hello@brightlaunch.studio</a>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <div>
+                    <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.16em; color:#64748b;">
+                      Location
+                    </div>
+                    <span>Remote-first · Collaborating worldwide</span>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <i class="fa-solid fa-clock"></i>
+                  <div>
+                    <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.16em; color:#64748b;">
+                      Typical response
+                    </div>
+                    <span>Within one business day</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.16em; color:#64748b; margin-bottom:0.4rem;">
+                    Social
+                  </div>
+                  <div class="social-row">
+                    <a href="#" class="social-pill" aria-label="Visit our Dribbble">
+                      <i class="fa-brands fa-dribbble"></i>
+                    </a>
+                    <a href="#" class="social-pill" aria-label="Visit our Behance">
+                      <i class="fa-brands fa-behance"></i>
+                    </a>
+                    <a href="#" class="social-pill" aria-label="Visit our GitHub">
+                      <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="#" class="social-pill" aria-label="Visit our LinkedIn">
+                      <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>
+              BrightLaunch
+              <span class="footer-badge">Design &amp; Front-End</span>
+            </h3>
+            <p>
+              A small studio with a sharp focus on design systems, interaction details, and launch-ready marketing
+              sites for product teams.
+            </p>
+          </div>
+
+          <div>
+            <div class="footer-column-title">Navigate</div>
+            <div class="footer-links">
+              <a href="#hero">Home</a>
+              <a href="#services">Services</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-column-title">Connect</div>
+            <div class="footer-links">
+              <a href="mailto:hello@brightlaunch.studio">
+                <i class="fa-regular fa-envelope"></i>
+                hello@brightlaunch.studio
+              </a>
+              <a href="#">
+                <i class="fa-brands fa-linkedin-in"></i>
+                LinkedIn
+              </a>
+              <a href="#">
+                <i class="fa-brands fa-x-twitter"></i>
+                Twitter
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>© <span id="year"></span> BrightLaunch Studio. All rights reserved.</div>
+          <div style="display:flex; gap:0.75rem;">
+            <a href="#">Privacy</a>
+            <span aria-hidden="true">•</span>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Navbar toggle
+    const navToggle = document.getElementById("navToggle");
+    const navMenu   = document.getElementById("navMenu");
+
+    navToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("open");
+      navToggle.innerHTML = navMenu.classList.contains("open")
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    // Close nav on link click (mobile)
+    navMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (navMenu.classList.contains("open")) {
+          navMenu.classList.remove("open");
+          navToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }
+      });
+    });
+
+    // Contact form basic validation
+    const form = document.getElementById("contactForm");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const messageError = document.getElementById("messageError");
+    const formStatus = document.getElementById("formStatus");
+
+    function showError(el, errorEl, condition, message) {
+      if (condition) {
+        errorEl.textContent = message;
+        errorEl.style.display = "block";
+        el.setAttribute("aria-invalid", "true");
+      } else {
+        errorEl.style.display = "none";
+        el.removeAttribute("aria-invalid");
+      }
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      let hasError = false;
+
+      // Name validation
+      if (!nameInput.value.trim()) {
+        showError(nameInput, nameError, true, "Please enter your name.");
+        hasError = true;
+      } else {
+        showError(nameInput, nameError, false, "");
+      }
+
+      // Email validation
+      const emailValue = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailValue || !emailRegex.test(emailValue)) {
+        showError(emailInput, emailError, true, "Please enter a valid email address.");
+        hasError = true;
+      } else {
+        showError(emailInput, emailError, false, "");
+      }
+
+      // Message validation
+      if (!messageInput.value.trim()) {
+        showError(messageInput, messageError, true, "Please include a short message.");
+        hasError = true;
+      } else {
+        showError(messageInput, messageError, false, "");
+      }
+
+      if (hasError) {
+        formStatus.textContent = "Please fix the highlighted fields and try again.";
+        formStatus.className = "form-status error";
+        formStatus.style.display = "block";
+        return;
+      }
+
+      // Simulated successful submission
+      formStatus.textContent = "Thanks for reaching out! We’ll get back to you shortly.";
+      formStatus.className = "form-status success";
+      formStatus.style.display = "block";
+
+      form.reset();
+    });
+
+    // Dynamically set footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
